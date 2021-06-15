@@ -1,0 +1,4 @@
+localhost {
+    file_server /dist/*
+    try_files {path} /
+}
