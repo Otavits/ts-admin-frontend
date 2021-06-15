@@ -1,4 +1,5 @@
 :8080 {
-    file_server /srv/*
+    root * /srv
     try_files {path} /
+    file_server
 }
