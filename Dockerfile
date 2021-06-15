@@ -3,7 +3,7 @@ FROM node:lts-alpine AS builder
 RUN mkdir build_zone
 WORKDIR /build_zone
 COPY . .
-RUN npm build
+RUN npm build .
 
 FROM caddy
 
