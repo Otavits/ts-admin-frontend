@@ -1,4 +1,4 @@
-localhost {
-    file_server /dist/*
+:8080 {
+    file_server /srv/*
     try_files {path} /
 }
