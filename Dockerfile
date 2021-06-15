@@ -12,4 +12,4 @@ COPY --from=builder /build_zone/dist .
 COPY --from=builder /build_zone/Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
-CMD ["caddy", "start", "--config", "/etc/caddy/Caddyfile"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
