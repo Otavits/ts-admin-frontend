@@ -1,0 +1,14 @@
+.catch(error => {
+      console.log(error.response.data.message || error.message)
+      console.log(error.response.data.detail || error.message)
+    }
+    )
+
+
+        var unixTimestamp = 1621437298
+    var date = new Date(unixTimestamp * 1000)
+    console.log('Unix Timestamp:', unixTimestamp)
+    console.log('Date Timestamp:', date.getTime())
+    console.log(date)
+    console.log('Date: ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds())
+  },
