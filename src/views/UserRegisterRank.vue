@@ -8,7 +8,7 @@
             Niestety nie spełniasz wymagań aby się zarejestrwoać!
             </b-alert>
             <b-overlay :show="loading" rounded="sm">
-            <b-jumbotron header="Rejestracja" lead="W tym miejscu możesz sam się zarejestrwoać">
+            <b-jumbotron header="Rejestracja" lead="W tym miejscu możesz sam się zarejestrować">
                     <form-wizard
                       @on-complete="submit"
                       :start-index=index_step

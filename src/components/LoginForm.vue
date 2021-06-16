@@ -13,9 +13,9 @@
     <p class="list">
       <UserComponent  v-for="(data ,index) in onlinelist" v-bind:key="index" :data="data" />
       </p>
-            <p class="center" v-if="onlinelist.length==0"> Nie znaleziono twojego konta?
+            <p class="center" v-if="onlinelist.length==0"> Nie znaleziono Twojego konta?
               <br>
-              Zaloguj się na teamspeak Otavi.pl i
+              Zaloguj się na TeamSpeak3 Otavi.pl i
               Kliknij odśwież</p>
     <b-button class="refresh" @click="reresh"><refresh-cw-icon size="1.4x" class="custom-class"></refresh-cw-icon> Odśwież</b-button>
   </b-jumbotron>
