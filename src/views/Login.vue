@@ -27,7 +27,7 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-button variant="primary">Zaloguj</b-button>
+      <b-button variant="primary">Zaloguj sie</b-button>
     </b-form>
     </div>
   </div>
