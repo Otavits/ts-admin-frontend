@@ -46,5 +46,8 @@ export default {
   },
   SET_STATUS_SIEDBAR (state, data) {
     state.hidden_siedbar = data
+  },
+  SET_GAME_GROUP_LIST (state, data) {
+    state.group_games_list = data
   }
 }

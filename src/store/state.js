@@ -10,7 +10,8 @@ export default {
   staff_list: null,
   user_list: null,
   admin_card: false,
-  path_to_server: 'http://51.83.179.244:7798/',
+  group_games_list: null,
+  path_to_server: 'http://localhost:7798/',
   ip: '51.83.179.240',
   hidden_siedbar: false,
   hiden_content_siedbar: true

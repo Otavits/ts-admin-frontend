@@ -2,7 +2,6 @@
     <div>
         <div id="main_content">
             Wersja systemu V-1a, system w fazie rozwoju.
-
         </div>
     </div>
 </template>
@@ -20,11 +19,13 @@ export default {
     background-color:#3b4650;
 }
 #main_content {
-    position: fixed;
+    position: absolute;
     text-align: left;
     float: left;
     color: black;
     margin-top: 100px;
-    max-width: 900px;
+    max-width: 1800px;
+    overflow: auto;
+    display: flex;
 }
 </style>

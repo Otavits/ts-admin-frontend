@@ -38,6 +38,14 @@
                                         required
                                         ></b-form-input>
                                     </b-form-group>
+                                    <b-form-group v-if="$route.params.type==='rank_games'" id="input-group-4" label="Nazwa grupy:" label-for="input-4">
+                                      <b-form-input
+                                        id="input-4"
+                                        v-model="form.group_name"
+                                        placeholder="Wprowadź nazwę grupy"
+                                        required
+                                      ></b-form-input>
+                                    </b-form-group>
 
                                     <b-button class="button" type="submit" variant="primary">Zapisz</b-button>
                                     <b-button v-if="$route.params.action==='modify'" class="button_get" @click="$bvModal.show('confirm-delete')" variant="danger">Usuń rangę</b-button>
@@ -76,26 +84,18 @@ export default {
         group_id: 0,
         path: '',
         id: 0,
-        type: ''
-      },
-      request: {
-        action: null,
-        id: null,
-        type: null,
-        rank_name: null,
-        group_id: null,
-        path: null
+        type: '',
+        group_name: ''
       }
     }
   },
   methods: {
     remove () {
-      this.request.type = this.$route.params.type
-      this.request.id = this.$route.params.id
-      this.request.rank_name = this.form.rank_name
-      this.request.group_id = this.form.group_id
-      this.request.path = this.form.path
-      this.$store.dispatch('delete_rank_register', this.form)
+      if (this.$route.params.type === 'rank_games') {
+        this.$store.dispatch('delete_rank_games', this.form)
+      } else {
+        this.$store.dispatch('delete_rank_register', this.form)
+      }
       this.$bvModal.show('modal-add')
     },
     goBack () {
@@ -103,7 +103,11 @@ export default {
     },
     onSubmit (event) {
       event.preventDefault()
-      this.$store.dispatch('put_rank_register', this.form)
+      if (this.$route.params.type === 'rank_games') {
+        this.$store.dispatch('put_rank_games', this.form)
+      } else {
+        this.$store.dispatch('put_rank_register', this.form)
+      }
       this.$bvModal.show('modal-add')
     },
     get_name_rank () {
@@ -121,6 +125,12 @@ export default {
       this.form.rank_name = this.$route.params.name_rank
       this.form.group_id = this.$route.params.group_id
       this.form.path = this.$route.params.path
+      if (this.$route.params.type === 'rank_games') {
+        this.form.group_name = this.$route.params.misc
+      }
+    }
+    if (this.$route.params.type === 'rank_games' && this.$route.params.action === 'add') {
+      this.form.group_name = this.$route.params.misc
     }
   }
 }

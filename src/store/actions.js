@@ -164,7 +164,7 @@ export default {
       }
     )
   },
-  get_staff_list ({ commit }, DATA) {
+  get_staff_list ({ commit }) {
     const headers = {
       'Content-Type': 'application/json'
     }
@@ -174,7 +174,7 @@ export default {
       }
     )
   },
-  get_user_list ({ commit }, DATA) {
+  get_user_list ({ commit }) {
     const headers = {
       'Content-Type': 'application/json'
     }
@@ -235,6 +235,38 @@ export default {
     return axios.get(this.state.path_to_server + 'public/get_ip', { headers }).then(
       ({ data }) => {
         commit('SET_IP', data.client_host)
+      }
+    )
+  },
+  get_group_rank_list ({ commit }) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.get(this.state.path_to_server + 'staff/rank_game_group_list', { headers }).then(
+      ({ data }) => {
+        commit('SET_GAME_GROUP_LIST', data)
+      }
+    )
+  },
+  put_rank_games ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.put(this.state.path_to_server + 'staff/rank_game/', DATA, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      }
+    )
+  },
+  delete_rank_games ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.delete(this.state.path_to_server + 'staff/rank_game/', { data: DATA }, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
       }
     )
   }

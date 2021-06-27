@@ -12,6 +12,7 @@ import RankForm from '../viewsadmin/RankForm'
 import ManageStaffRank from '../viewsadmin/ManageRankStaff'
 import RankStaffForm from '../viewsadmin/RankStaffForm.vue'
 import StaffList from '../viewsadmin/StaffList.vue'
+import RankGames from '../viewsadmin/RankGames'
 
 Vue.use(VueRouter)
 
@@ -60,7 +61,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/manage/form/rank/:type/:action/:id/:name_rank/:group_id/:path',
+    path: '/manage/form/rank/:type/:action/:id/:name_rank/:group_id/:path/:misc',
     name: 'rankform',
     component: RankForm,
     meta: { requiresAuth: true }
@@ -81,6 +82,12 @@ const routes = [
     path: '/manage/stafflist',
     name: 'stafflist',
     component: StaffList,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/manage/rankgameslist',
+    name: 'rankgameslist',
+    component: RankGames,
     meta: { requiresAuth: true }
   }
 ]
