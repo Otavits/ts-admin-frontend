@@ -269,5 +269,37 @@ export default {
         console.log(error.response.data.detail || error.message)
       }
     )
+  },
+  put_rank_group_games ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.put(this.state.path_to_server + 'staff/rank_game_group_list/', DATA, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      }
+    )
+  },
+  delete_rank_group_games ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.delete(this.state.path_to_server + 'staff/rank_game_group_list/', { data: DATA }, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      }
+    )
+  },
+  set_game_rank ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.put(this.state.path_to_server + 'login/set_rank_games/', DATA, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      })
   }
 }

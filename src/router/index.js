@@ -13,6 +13,7 @@ import ManageStaffRank from '../viewsadmin/ManageRankStaff'
 import RankStaffForm from '../viewsadmin/RankStaffForm.vue'
 import StaffList from '../viewsadmin/StaffList.vue'
 import RankGames from '../viewsadmin/RankGames'
+import GameRank from '../views/GameRank'
 
 Vue.use(VueRouter)
 
@@ -61,7 +62,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/manage/form/rank/:type/:action/:id/:name_rank/:group_id/:path/:misc',
+    path: '/manage/form/rank/:type/:action/:id/:name_rank/:group_id/:path/:misc/:sort_id',
     name: 'rankform',
     component: RankForm,
     meta: { requiresAuth: true }
@@ -89,6 +90,12 @@ const routes = [
     name: 'rankgameslist',
     component: RankGames,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/gamerank',
+    name: 'gamerank',
+    component: GameRank,
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -110,7 +117,11 @@ router.beforeEach((to, from, next) => {
   }
   if (to.matched.some(record => record.meta.norequiresAuth)) {
     if (loggedIn) {
-      next('/dashboard')
+      if (to.name !== 'home') {
+        next()
+      } else {
+        next('/dashboard')
+      }
     } else {
       next()
     }

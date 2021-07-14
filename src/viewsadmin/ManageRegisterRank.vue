@@ -12,7 +12,7 @@
                             @row-clicked="rowclick_gender"
                             >
                             </b-table>
-                            <router-link :to="{ name: 'rankform', params: { type: 'rank_gender', action: 'add', id: 0 , name_rank: 'null', group_id: 'null', path: 'null', misc: 'null' }}"><b-button class="button" variant="primary">Dodaj nową</b-button></router-link>
+                            <router-link :to="{ name: 'rankform', params: { type: 'rank_gender', action: 'add', id: 0 , name_rank: 'null', group_id: 'null', path: 'null', misc: 'null', sort_id: 'null'}}"><b-button class="button" variant="primary">Dodaj nową</b-button></router-link>
                     </b-jumbotron>
                 </div>
                 <br>
@@ -27,7 +27,7 @@
                             @row-clicked="rowclick_province"
                             >
                             </b-table>
-                            <router-link :to="{ name: 'rankform', params: { type: 'rank_province', action: 'add', id: 0 , name_rank: 'null', group_id: 'null', path: 'null', misc: 'null' }}"><b-button class="button" variant="primary">Dodaj nową</b-button></router-link>
+                            <router-link :to="{ name: 'rankform', params: { type: 'rank_province', action: 'add', id: 0 , name_rank: 'null', group_id: 'null', path: 'null', misc: 'null', sort_id: 'null' }}"><b-button class="button" variant="primary">Dodaj nową</b-button></router-link>
                     </b-jumbotron>
                 </div>
         </div>
@@ -62,10 +62,10 @@ export default {
   },
   methods: {
     rowclick_gender (item, index, event) {
-      this.$router.push({ name: 'rankform', params: { type: 'rank_gender', action: 'modify', id: index + 1, name_rank: this.rank_gender[index].rank_name, group_id: this.rank_gender[index].group_id, path: this.rank_gender[index].path, misc: 'null' } })
+      this.$router.push({ name: 'rankform', params: { type: 'rank_gender', action: 'modify', id: index + 1, name_rank: this.rank_gender[index].rank_name, group_id: this.rank_gender[index].group_id, path: this.rank_gender[index].path, misc: 'null', sort_id: 'null' } })
     },
     rowclick_province (item, index, event) {
-      this.$router.push({ name: 'rankform', params: { type: 'rank_province', action: 'modify', id: index + 1, name_rank: this.rank_province[index].rank_name, group_id: this.rank_province[index].group_id, path: this.rank_province[index].path, misc: 'null' } })
+      this.$router.push({ name: 'rankform', params: { type: 'rank_province', action: 'modify', id: index + 1, name_rank: this.rank_province[index].rank_name, group_id: this.rank_province[index].group_id, path: this.rank_province[index].path, misc: 'null', sort_id: 'null' } })
     }
   },
   mounted () {

@@ -38,7 +38,15 @@
                                         required
                                         ></b-form-input>
                                     </b-form-group>
-                                    <b-form-group v-if="$route.params.type==='rank_games'" id="input-group-4" label="Nazwa grupy:" label-for="input-4">
+                                    <b-form-group v-if="$route.params.type==='rank_games'" id="input-group-4" label="Sort ID:" label-for="input-4">
+                                      <b-form-input
+                                        id="input-4"
+                                        v-model="form.sort_id"
+                                        placeholder="Wprowadź sort-id"
+                                        required
+                                      ></b-form-input>
+                                    </b-form-group>
+                                    <b-form-group v-if="$route.params.type==='rank_games'" id="input-group-5" label="Nazwa grupy:" label-for="input-5">
                                       <b-form-input
                                         id="input-4"
                                         v-model="form.group_name"
@@ -85,6 +93,7 @@ export default {
         path: '',
         id: 0,
         type: '',
+        sort_id: 0,
         group_name: ''
       }
     }
@@ -127,10 +136,12 @@ export default {
       this.form.path = this.$route.params.path
       if (this.$route.params.type === 'rank_games') {
         this.form.group_name = this.$route.params.misc
+        this.form.sort_id = this.$route.params.sort_id
       }
     }
     if (this.$route.params.type === 'rank_games' && this.$route.params.action === 'add') {
       this.form.group_name = this.$route.params.misc
+      this.form.sort_id = null
     }
   }
 }

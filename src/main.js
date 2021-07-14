@@ -31,7 +31,8 @@ new Vue({
       response => response,
       error => {
         if (error.response.data.detail === 'Could not validate credentials') {
-          this.$router.push({ name: 'dashboard' })
+          this.$store.dispatch('logout')
+          this.$router.push({ name: 'home' })
         }
         return Promise.reject(error)
       }
