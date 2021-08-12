@@ -33,7 +33,7 @@ export default {
       'Content-Type': 'application/json'
     }
     axios
-      .get(this.$store.state.path_to_server + 'staff/rank_games_list/' + this.data.group_name, { headers })
+      .get(this.$store.state.path_to_server + 'public/rank_games_list/' + this.data.group_name, { headers })
       .then(response => { this.table_data = response.data })
   },
   methods: {

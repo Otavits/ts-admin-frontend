@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="main_content">
-            Wersja systemu V-1a, system w fazie rozwoju.
+            Wersja systemu V-1b, system w fazie rozwoju.
         </div>
     </div>
 </template>

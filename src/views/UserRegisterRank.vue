@@ -8,8 +8,9 @@
             Niestety nie spełniasz wymagań aby się zarejestrwoać!
             </b-alert>
             <b-overlay :show="loading" rounded="sm">
-            <b-jumbotron header="Rejestracja" lead="W tym miejscu możesz sam się zarejestrować">
-                    <form-wizard
+            <b-jumbotron header="Rejestracja" lead="W tym miejscu możesz sam się zarejestrować lub zmienić swoje rangi rejestracyjne">
+            <form-wizard
+                      v-if="status_rules.status_register==false"
                       @on-complete="submit"
                       :start-index=index_step
                       title=''
@@ -159,6 +160,84 @@
                   </div>
           </template>
         </form-wizard>
+              <form-wizard
+                v-if="status_rules.status_register==true"
+                @on-complete="submit"
+                :start-index=index_step
+                title=''
+                subtitle=''
+                nextButtonText="Dalej"
+                backButtonText="Wróć"
+                finishButtonText="Zakończ"
+                errorColor="#ff0018"
+                color="#ffc107">
+                <tab-content title="Wybór płci"
+                             icon="fas fa-venus-mars"
+                             :before-change="validateGender">
+                  <div id="content">
+                    Wybierz swoją płeć, ranga ta będzie widoczna przy twoim nicku na naszym TS3
+                  </div>
+                  <div id="container">
+                    <div id="containers" v-for="(item, index) in rank_gender" v-bind:key="index">
+                      <div class="element">
+                        <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
+                      </div>
+                      <div class="element">
+                        {{ item.rank_name }}
+                      </div>
+                      <div class="element">
+                        <b-form-checkbox
+                          :id=item.rank_name
+                          v-model="selected_gender"
+                          :name=item.rank_name
+                          :value=item.group_id
+                          :unchecked-value=null
+                        >
+                        </b-form-checkbox>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </tab-content>
+                <tab-content title="Wybór województwa"
+                             icon="far fa-compass">
+                  <div id="container">
+                    <div id="containers" v-for="(item, index) in rank_province" v-bind:key="index">
+                      <div class="element">
+                        <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
+                      </div>
+                      <div class="element2">
+                        {{ item.rank_name }}
+                      </div>
+                      <div class="element">
+                        <b-form-checkbox
+                          :id=item.rank_name
+                          v-model="selected_province"
+                          :name=item.rank_name
+                          :value=item.group_id
+                          :unchecked-value=null
+                        >
+                        </b-form-checkbox>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </tab-content>
+                <template slot="footer" slot-scope="props">
+                  <div class="wizard-footer-left">
+                    <b-button class="button" variant="warning" v-if="!props.activeTabIndex == 0" @click="props.prevTab()">Powrót</b-button>
+                  </div>
+                  <div class="wizard-footer-right">
+                    <b-button class="button" variant="secondary" v-if="props.activeTabIndex == 0 && !props.isLastStep && !rules_validate" @click="props.nextTab()">Dalej</b-button>
+                    <b-button class="button" variant="warning" v-if="props.activeTabIndex == 0 && !props.isLastStep && rules_validate" @click="props.nextTab()">Dalej</b-button>
+                    <b-button class="button" variant="secondary" v-if="props.activeTabIndex == 1 && !props.isLastStep && !rank_gender_validate" @click="props.nextTab()">Dalej</b-button>
+                    <b-button class="button" variant="warning" v-if="props.activeTabIndex == 1 && !props.isLastStep && rank_gender_validate" @click="props.nextTab()">Dalej</b-button>
+
+                    <b-button class="button" variant="secondary" v-if="props.isLastStep && !rank_province_validate" @click="props.nextTab()">Zakończ</b-button>
+                    <b-button class="button" variant="warning" v-if="props.isLastStep && rank_province_validate" @click="props.nextTab()">Zakończ</b-button>
+                  </div>
+                </template>
+              </form-wizard>
             </b-jumbotron>
             </b-overlay>
         </div>
@@ -202,7 +281,8 @@ export default {
         connect: null,
         time: null,
         ban: null,
-        rules: null
+        rules: null,
+        status_register: null
       },
       payload: {
         gender_id: null,
@@ -218,6 +298,7 @@ export default {
         this.payload.gender_id = this.selected_gender
         this.payload.province_id = this.selected_province
         this.$store.dispatch('send_to_register_on_ts3', this.payload)
+        window.location.reload()
       }
     },
     validateAsync: function () {

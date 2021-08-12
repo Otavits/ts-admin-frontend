@@ -56,7 +56,7 @@ export default {
     const dd = this.rank_current_list
     console.log(dd)
     axios
-      .get(this.$store.state.path_to_server + 'staff/rank_games_list/' + this.rank_group, { headers })
+      .get(this.$store.state.path_to_server + 'public/rank_games_list/' + this.rank_group, { headers })
       .then(response => {
         this.rank_data = response.data
       })

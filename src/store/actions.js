@@ -242,7 +242,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'staff/rank_game_group_list', { headers }).then(
+    return axios.get(this.state.path_to_server + 'public/rank_game_group_list', { headers }).then(
       ({ data }) => {
         commit('SET_GAME_GROUP_LIST', data)
       }
