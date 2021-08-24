@@ -7,6 +7,8 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import VueApexCharts from 'vue-apexcharts'
+
 import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
@@ -15,8 +17,10 @@ import axios from 'axios'
 
 Vue.use(BootstrapVue)
 Vue.use(VueSidebarMenu)
+Vue.use(VueApexCharts)
 
 Vue.config.productionTip = true
+Vue.component('apexchart', VueApexCharts)
 
 new Vue({
   router,

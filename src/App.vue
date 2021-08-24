@@ -51,7 +51,6 @@ body {
 .main_con {
 
     text-align: left;
-    float: left;
     color: black;
     overflow: show;
     margin-left: 258px;
