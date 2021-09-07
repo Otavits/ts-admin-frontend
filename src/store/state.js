@@ -7,6 +7,7 @@ export default {
   rank_gender: null,
   rank_province: null,
   staff_rank: null,
+  user_rank: null,
   staff_list: null,
   user_list: null,
   admin_card: false,

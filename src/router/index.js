@@ -14,6 +14,7 @@ import RankStaffForm from '../viewsadmin/RankStaffForm.vue'
 import StaffList from '../viewsadmin/StaffList.vue'
 import RankGames from '../viewsadmin/RankGames'
 import GameRank from '../views/GameRank'
+import ManageMessage from '../viewsadmin/ManageMessage'
 
 Vue.use(VueRouter)
 
@@ -95,6 +96,12 @@ const routes = [
     path: '/gamerank',
     name: 'gamerank',
     component: GameRank,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/managemessage',
+    name: 'managemessage',
+    component: ManageMessage,
     meta: { requiresAuth: true }
   }
 ]

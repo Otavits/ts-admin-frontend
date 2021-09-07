@@ -49,5 +49,8 @@ export default {
   },
   SET_GAME_GROUP_LIST (state, data) {
     state.group_games_list = data
+  },
+  SET_USER_RANK (state, data) {
+    state.user_rank = data
   }
 }

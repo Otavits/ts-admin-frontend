@@ -84,6 +84,8 @@ export default {
   },
   data () {
     return {
+      load_stats_status: true,
+      load_current_stats_status: true,
       current_stats: {
         ping: 0,
         current_user: 0,
@@ -230,6 +232,7 @@ export default {
       axios
         .get(this.$store.state.path_to_server + 'public/last_stats/', { headers })
         .then(response => {
+          this.load_current_stats_status = true
           this.current_stats = response.data
         })
     },
@@ -240,6 +243,7 @@ export default {
       axios
         .get(this.$store.state.path_to_server + 'public/stats/', { headers })
         .then(response => {
+          this.load_stats_status = true
           this.$refs.Ping_chart.updateSeries([{
             name: 'Ping',
             data: response.data.ping
@@ -255,8 +259,12 @@ export default {
         })
     },
     load_data: function () {
-      this.loadInfo()
-      this.loadCurrentInfo()
+      if (this.load_current_stats_status === true & this.load_stats_status === true) {
+        this.loadInfo()
+        this.loadCurrentInfo()
+      }
+      this.load_stats_status = false
+      this.load_current_stats_status = false
     }
   },
   created () {

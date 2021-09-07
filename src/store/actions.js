@@ -301,5 +301,14 @@ export default {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
       })
+  },
+  get_user_rank ({ commit }) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.get(this.state.path_to_server + 'public/rank_user/', { headers }).then(
+      ({ data }) => {
+        commit('SET_USER_RANK', data)
+      })
   }
 }
