@@ -99,7 +99,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/managemessage',
+    path: '/managemessage/:id',
     name: 'managemessage',
     component: ManageMessage,
     meta: { requiresAuth: true }
@@ -113,6 +113,9 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('user')
+  if (to.path === '/managemessage') {
+    next('/managemessage/0')
+  }
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!loggedIn) {
       next('/')

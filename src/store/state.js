@@ -15,5 +15,6 @@ export default {
   path_to_server: 'http://localhost:7798/',
   ip: '51.83.179.240',
   hidden_siedbar: false,
+  user_list_to_search: null,
   hiden_content_siedbar: true
 }

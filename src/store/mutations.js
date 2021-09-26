@@ -52,5 +52,8 @@ export default {
   },
   SET_USER_RANK (state, data) {
     state.user_rank = data
+  },
+  SET_USER_SEARCH_LIST (state, data) {
+    this.state.user_list_to_search = data
   }
 }

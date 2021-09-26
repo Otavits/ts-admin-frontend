@@ -310,5 +310,15 @@ export default {
       ({ data }) => {
         commit('SET_USER_RANK', data)
       })
+  },
+  get_user_search_list ({ commit }) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.get(this.state.path_to_server + 'public/list_user_search/', { headers }).then(
+      ({ data }) => {
+        commit('SET_USER_SEARCH_LIST', data)
+      }
+    )
   }
 }

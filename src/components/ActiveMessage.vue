@@ -1,31 +1,53 @@
 <template>
   <div id="main">
-    <b-card class="card_form" :title=message.title   >
-      <b-card-sub-title class="subtitle">{{message.date | date_format(message.author)}}</b-card-sub-title>
-      <b-card-text class="content-text">
-        <div class="recipient"> Widoczne dla: {{ message.recipient }}</div>
-        {{ message.content }}
-        <div class="button-group">
-          <b-button squared class="button" >Archwizuj</b-button>
-          <b-button squared class="button" >Modyfikuj</b-button>
-        </div>
-      </b-card-text>
-    </b-card>
+    <b-overlay :show="!apiLoaded || !apiLoaded2" rounded="sm" variant="dark">
+      <b-card class="card_form" :title=message.title   >
+        <b-card-sub-title v-if="apiLoaded===true && apiLoaded2===true"  class="subtitle">{{message.date | date_format(user_list_to_search.users.find(element => element.DBID == message.author).Nick)}}</b-card-sub-title>
+        <b-card-text class="content-text">
+          <div class="recipient"> Widoczne dla: {{ message.recipient }}</div>
+          {{ message.content }}
+          <div class="button-group">
+            <b-button squared class="button" >Archwizuj</b-button>
+            <b-button squared class="button" @click="modify">Modyfikuj</b-button>
+          </div>
+        </b-card-text>
+      </b-card>
+    </b-overlay>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState } from 'vuex'
+
 export default {
   name: 'ActiveMessage',
+  props: {
+    message_id: null
+  },
   data () {
     return {
       message: {
-        title: 'Witaj Świecie',
-        date: 1629044321,
-        author: 'ordenix',
-        recipient: 'Administratorzy',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur commodo nulla, sit amet blandit turpis convallis in. In rutrum et urna vitae sollicitudin. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam sollicitudin ante in metus commodo, eleifend lacinia metus luctus. Curabitur congue diam et risus hendrerit, ac ultricies orci molestie. Vestibulum at enim sodales, tincidunt nisl sodales, accumsan erat. Ut vel rutrum est, vitae sollicitudin mauris. Aenean quis leo vel ex pharetra aliquet. Aenean molestie in purus nec blandit. Praesent ex sapien, feugiat sed magna ut, finibus luctus erat. Aenean a mi tristique eros pulvinar pulvinar vitae vitae ligula. Proin mauris quam, sodales id dui sed, congue ornare purus.'
-      }
+        title: '',
+        date: 0,
+        author: '',
+        recipient: 'TO DO',
+        content: ''
+      },
+      apiLoaded: false,
+      apiLoaded2: false
+    }
+  },
+  computed: {
+    ...mapState([
+      'user_list_to_search'
+    ])
+  },
+  methods: {
+    modify () {
+      this.$emit('go_to_modify')
+      this.$router.push({ name: 'managemessage', params: { id: this.message_id } })
+      window.location.reload()
     }
   },
   filters: {
@@ -34,6 +56,34 @@ export default {
       var date = new Date(value * 1000)
       return (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' przez ' + arg1)
     }
+  },
+  created () {
+    if (this.user_list_to_search === null) {
+      this.$store.dispatch('get_user_search_list').then(
+        this.apiLoaded = true
+      )
+    } else {
+      this.apiLoaded = true
+    }
+    const payload = { message_id: this.message_id }
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    axios
+      .post(this.$store.state.path_to_server + 'login/get_message_by_id/', payload, { headers })
+      .then(response => {
+        this.message.title = response.data.title
+        this.message.date = response.data.date
+        this.message.content = response.data.message
+        this.message.author = response.data.author
+        this.apiLoaded2 = true
+        if (response.data.to_all === true) {
+          this.message.recipient = 'Wszystkich'
+        }
+        if (response.data.to_id !== null) {
+          this.message.recipient = this.user_list_to_search.users.find(element => element.DBID === parseInt(response.data.to_id)).Nick
+        }
+      })
   }
 }
 </script>
