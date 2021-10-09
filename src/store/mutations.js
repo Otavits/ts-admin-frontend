@@ -55,5 +55,8 @@ export default {
   },
   SET_USER_SEARCH_LIST (state, data) {
     this.state.user_list_to_search = data
+  },
+  SET_LIST_ALL_USER_IN_DB (state, data) {
+    this.state.list_all_user_in_db = data
   }
 }

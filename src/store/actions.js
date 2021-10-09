@@ -320,5 +320,15 @@ export default {
         commit('SET_USER_SEARCH_LIST', data)
       }
     )
+  },
+  get_list_all_user_in_db ({ commit }) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.get(this.state.path_to_server + 'staff/get_all_user_list/', { headers }).then(
+      ({ data }) => {
+        commit('SET_LIST_ALL_USER_IN_DB', data)
+      }
+    )
   }
 }

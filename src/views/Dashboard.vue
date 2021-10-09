@@ -96,7 +96,7 @@ export default {
         current_user: 0,
         pack_loss: 0
       },
-      message_id: [1, 5, 65, 4554, 14556],
+      message_id: [],
       options: {
         fill: {
           colors: '#ffc107',

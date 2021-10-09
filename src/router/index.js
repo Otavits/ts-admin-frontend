@@ -15,6 +15,8 @@ import StaffList from '../viewsadmin/StaffList.vue'
 import RankGames from '../viewsadmin/RankGames'
 import GameRank from '../views/GameRank'
 import ManageMessage from '../viewsadmin/ManageMessage'
+import UserList from '../viewsadmin/UserList'
+import UserCard from '../viewsadmin/UserCard'
 
 Vue.use(VueRouter)
 
@@ -102,6 +104,18 @@ const routes = [
     path: '/managemessage/:id',
     name: 'managemessage',
     component: ManageMessage,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/UserList/',
+    name: 'UserList',
+    component: UserList,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/UserCard/:dbid',
+    name: 'UserCard',
+    component: UserCard,
     meta: { requiresAuth: true }
   }
 ]

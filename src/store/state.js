@@ -16,5 +16,17 @@ export default {
   ip: '51.83.179.240',
   hidden_siedbar: false,
   user_list_to_search: null,
-  hiden_content_siedbar: true
+  hiden_content_siedbar: true,
+  list_all_user_in_db: [],
+  settings_to_user_list: {
+    selected_online: false,
+    selected_help: false,
+    selected_home: false,
+    sortBy: 'DBID',
+    sortDesc: false,
+    nick: '',
+    uid: '',
+    ip: '',
+    dbid: ''
+  }
 }
