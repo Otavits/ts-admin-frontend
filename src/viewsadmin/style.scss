@@ -1,0 +1,55 @@
+#main_content {
+  text-align: left;
+  padding-right: 10px;
+  float: left;
+  color: black;
+  margin-top: 10px;
+  width:100%;
+  overflow: auto;
+
+}
+#container {
+  margin-top: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.jumbotron {
+  background-color: #2e3944 !important;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.mytabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mytabs input[type="radio"] {
+  display: none;
+}
+.mytabs label {
+  font-family: 'Itim', cursive;
+  background: #3b4650;
+  padding: 25px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  color: #fff;
+}
+.mytabs .tab {
+  background: #242424;
+  width: 100%;
+  padding: 20px;
+  order: 1;
+  display: none;
+  color: #fff;
+}
+.mytabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+.mytabs input[type="radio"]:checked + label {
+  background: #242424;
+}
+.mytabs input[type="radio"]:not(:checked):hover + label {
+  background: #ffc107;
+}
+.mytabs label i {
+  font-size: 20px;
+}

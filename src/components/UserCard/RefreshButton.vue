@@ -1,7 +1,8 @@
 <template>
   <div :class="[!checked ? 'main' : 'main_checked']">
     <div class="element">
-      <div class="icon"><i :class="icon"></i></div>
+      <div class="icon">
+        <b style="font-weight: 900"><b-icon-arrow-repeat :animation="checked ? 'spin' : ''">d</b-icon-arrow-repeat></b></div>
       <div class="label">{{ label }} </div>
     </div>
   </div>
@@ -21,7 +22,7 @@ export default {
 <style scoped>
 .main {
   height: 100%;
-  transition: background .2s ease-in;
+  transition: background .2s ease-in
 }
 .main:hover {
   background-color: #ffc107;
@@ -29,10 +30,6 @@ export default {
 .main_checked {
   background-color: #ffc107;
   height: 100%;
-}
-.main_checked:hover {
-  background-color: rgba(36,36,36,0.0);
-  transition: background .2s ease-in
 }
 .element {
   padding: 2px;

@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import message from '../components/message'
+import message from '../components/Message'
 import axios from 'axios'
 export default {
   components: {

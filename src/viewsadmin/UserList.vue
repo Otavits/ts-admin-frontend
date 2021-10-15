@@ -5,7 +5,7 @@
         <h2>Lista Użytkowników Ts3 Otavi.pl</h2>
         <div class="grid_container">
           <div class="nick">
-            <div class="search_box">
+            <div :class="settings_to_user_list.nick==='' ? 'search_box' : 'search_box_input'">
               <div class="icon">
                 <i class="far fa-user"></i>
               </div>
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="uid">
-            <div class="search_box">
+            <div :class="settings_to_user_list.uid==='' ? 'search_box' : 'search_box_input'">
               <div class="icon">
                 <i class="far fa-user"></i>
               </div>
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="ip">
-            <div class="search_box">
+            <div :class="settings_to_user_list.ip==='' ? 'search_box' : 'search_box_input'">
               <div class="icon">
                 <i class="far fa-user"></i>
               </div>
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="dbid">
-            <div class="search_box">
+            <div :class="settings_to_user_list.dbid==='' ? 'search_box' : 'search_box_input'">
               <div class="icon">
                 <i class="far fa-user"></i>
               </div>
@@ -76,7 +76,8 @@
             />
           </div>
           <div class="refresh" @click="refresh">
-            <SearchButton
+            <RefreshButton
+            :checked="refresh_queued"
             label="Odśwież"
             icon="fas fa-sync"
             />
@@ -126,13 +127,17 @@
 <script>
 import { mapState } from 'vuex'
 import SearchButton from '../components/UserCard/SearchButton'
+import RefreshButton from '../components/UserCard/RefreshButton'
+import axios from 'axios'
 export default {
   name: 'UserList.vue',
   components: {
-    SearchButton
+    SearchButton,
+    RefreshButton
   },
   data () {
     return {
+      refresh_queued: false,
       perPage: 50,
       currentPage: 1,
       loadAPI: false,
@@ -249,7 +254,16 @@ export default {
       }
     },
     refresh () {
-      this.$store.dispatch('get_list_all_user_in_db')
+      this.refresh_queued = true
+      const headers = {
+        'Content-Type': 'application/json'
+      }
+      axios.get(this.$store.state.path_to_server + 'staff/get_all_user_list/', { headers }).then(
+        ({ data }) => {
+          this.$store.commit('SET_LIST_ALL_USER_IN_DB', data)
+          this.refresh_queued = false
+        }
+      )
     }
   }
 }
@@ -347,6 +361,16 @@ export default {
   align-items: center;
   padding: 10px;
   text-align: center;
+  transition: background .2s ease-in;
+}
+.search_box_input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  transition: background .2s ease-in;
+  background-color: #ffc107;
 }
 .label {
   font-size: 1.5vw;

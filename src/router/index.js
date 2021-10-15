@@ -17,6 +17,7 @@ import GameRank from '../views/GameRank'
 import ManageMessage from '../viewsadmin/ManageMessage'
 import UserList from '../viewsadmin/UserList'
 import UserCard from '../viewsadmin/UserCard'
+import ManageBan from '../viewsadmin/ManageBan'
 
 Vue.use(VueRouter)
 
@@ -116,6 +117,12 @@ const routes = [
     path: '/UserCard/:dbid',
     name: 'UserCard',
     component: UserCard,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/ManageBan/',
+    name: 'ManageBan',
+    component: ManageBan,
     meta: { requiresAuth: true }
   }
 ]

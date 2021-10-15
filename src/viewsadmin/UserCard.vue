@@ -129,11 +129,11 @@
 </template>
 
 <script>
-import InfoTabUserCard from '../components/UserCard/InfoTab_UserCard'
-import ConnectTabUserCard from '../components/UserCard/ConnectTab_UserCard'
-import TimingTabCard from '../components/UserCard/TimingTab_UserCard'
-import LastIpTabUserCard from '../components/UserCard/LastIpTab_UserCard'
-import LastNickTabUserCard from '../components/UserCard/LastNickTab_UserCard'
+import InfoTabUserCard from '../components/UserCard/InfoTabUserCard'
+import ConnectTabUserCard from '../components/UserCard/ConnectTabUserCard'
+import TimingTabCard from '../components/UserCard/TimingTabUserCard'
+import LastIpTabUserCard from '../components/UserCard/LastIpTabUserCard'
+import LastNickTabUserCard from '../components/UserCard/LastNickTabUserCard'
 import axios from 'axios'
 export default {
   name: 'UserCard.vue',
