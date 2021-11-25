@@ -18,6 +18,7 @@ import ManageMessage from '../viewsadmin/ManageMessage'
 import UserList from '../viewsadmin/UserList'
 import UserCard from '../viewsadmin/UserCard'
 import ManageBan from '../viewsadmin/ManageBan'
+import BanHistoryTable from '../viewsadmin/BanHistoryTable'
 
 Vue.use(VueRouter)
 
@@ -123,6 +124,12 @@ const routes = [
     path: '/ManageBan/',
     name: 'ManageBan',
     component: ManageBan,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/BanHistoryTable/',
+    name: 'BanHistoryTable',
+    component: BanHistoryTable,
     meta: { requiresAuth: true }
   }
 ]

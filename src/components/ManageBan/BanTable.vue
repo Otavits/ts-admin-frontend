@@ -82,12 +82,64 @@
               </template>
               <template #cell(CzasOd)="data">
                 <div v-if="checkIsTimed(data.item.action_id)" class="large_input">
-                  <b-form-input  @change="putBanTableTimes(data.item)" type="number" v-model.number="data.item.time_from"/>
+                  <b-form-input  v-if="data.item.time_from_setting!='perm'" @change="putBanTableTimes(data.item)" type="number" v-model.number="data.item.time_from"/>
+                  <div class="check_box_form">
+                    <b-form-checkbox v-if="data.item.time_from_setting!='perm'" class="check_box" @change="putBanTableTimes(data.item)"
+                      v-model="data.item.time_from_setting"
+                      value="minute"
+                    >
+                      Minuty
+                    </b-form-checkbox>
+                    <b-form-checkbox  v-if="data.item.time_from_setting!='perm'" class="check_box" @change="putBanTableTimes(data.item)"
+                      v-model="data.item.time_from_setting"
+                      value="day"
+                    >
+                      Dni
+                    </b-form-checkbox>
+                    <b-form-checkbox v-if="data.item.time_from_setting!='perm'" class="check_box" @change="putBanTableTimes(data.item)"
+                      v-model="data.item.time_from_setting"
+                      value="month"
+                    >
+                      M-c
+                    </b-form-checkbox>
+                    <b-form-checkbox class="check_box" @change="putBanTableTimes(data.item)"
+                                     v-model="data.item.time_from_setting"
+                                     value="perm"
+                    >
+                      Perm
+                    </b-form-checkbox>
+                  </div>
                 </div>
               </template>
               <template #cell(CzasDo)="data">
-                <div v-if="checkIsTimed(data.item.action_id)" class="large_input">
+                <div v-if="checkIsTimed(data.item.action_id) && data.item.time_from_setting!='perm'" class="large_input">
                   <b-form-input  @change="putBanTableTimes(data.item)" type="number" v-model="data.item.time_to"/>
+                  <div class="check_box_form">
+                    <b-form-checkbox class="check_box" @change="putBanTableTimes(data.item)"
+                                     v-model="data.item.time_to_setting"
+                                     value='minute'
+                    >
+                      Minuty
+                    </b-form-checkbox>
+                    <b-form-checkbox class="check_box" @change="putBanTableTimes(data.item)"
+                                     v-model="data.item.time_to_setting"
+                                     value="day"
+                    >
+                      Dni
+                    </b-form-checkbox>
+                    <b-form-checkbox class="check_box" @change="putBanTableTimes(data.item)"
+                                     v-model="data.item.time_to_setting"
+                                     value="month"
+                    >
+                      M-c
+                    </b-form-checkbox>
+                    <b-form-checkbox class="check_box" @change="putBanTableTimes(data.item)"
+                                     v-model="data.item.time_to_setting"
+                                     value="perm"
+                    >
+                      Perm
+                    </b-form-checkbox>
+                  </div>
                 </div>
               </template>
               <template #cell(Usuń)="data">
@@ -166,7 +218,7 @@ export default {
   name: 'BanTable.vue',
   computed: {
     filteredTableData () {
-      return this.table_data.filter(elelemt => elelemt.name.toLowerCase().includes(this.search.nick.toLowerCase())).filter(elelemt => elelemt.description.toLowerCase().includes(this.search.description.toLowerCase()))
+      return this.table_data.filter(element => element.name.toLowerCase().includes(this.search.nick.toLowerCase())).filter(element => element.description.toLowerCase().includes(this.search.description.toLowerCase()))
     }
   },
   data () {
@@ -180,6 +232,11 @@ export default {
       api_loaded_table_times: false,
       ban_action: [],
       ban_times_table: [],
+      check_box_items: [
+        { text: 'minuty', value: 'minute' },
+        { text: 'dni', value: 'day' },
+        { text: 'm-c', value: 'month' }
+      ],
       fields: [
         'Lp',
         {
@@ -229,9 +286,13 @@ export default {
         action_id: 0,
         ban_id: banId,
         times_from: 0,
+        times_from_setting: '',
         times_to: 0,
+        times_to_setting: '',
         time_from: 0,
+        time_from_setting: '',
         time_to: 0,
+        time_to_setting: '',
         points: 0
       }
       axios.put(this.$store.state.path_to_server + 'bans/put_ban_times_by_ban_id/', payload, { headers })
@@ -267,7 +328,7 @@ export default {
         'Content-Type': 'application/json'
       }
       this.api_loaded = false
-      axios.get(this.$store.state.path_to_server + 'bans/get_ban_table', { headers })
+      axios.get(this.$store.state.path_to_server + 'bans/get_ban_table/', { headers })
         .then(response => {
           this.table_data = response.data
           this.api_loaded = true
@@ -436,5 +497,16 @@ input {
 }
 .button_delete:hover {
   background-color: rgba(36, 36, 36, 0.27);
+}
+.check_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left !important;
+}
+.check_box_form {
+  transform: translate(25%, -0%);
+  align-items: center;
+  justify-content: space-around;
 }
 </style>

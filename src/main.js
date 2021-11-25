@@ -38,6 +38,10 @@ new Vue({
           this.$store.dispatch('logout')
           this.$router.push({ name: 'home' })
         }
+        if (error.response.data.detail === 'UNAUTHORIZED OPERATION') {
+          this.$store.dispatch('logout')
+          this.$router.push({ name: 'home' })
+        }
         return Promise.reject(error)
       }
     )

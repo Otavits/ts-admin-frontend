@@ -59,7 +59,7 @@
                   <b-card class="card" text-variant="white" title="Nadchodzące wydarzenia">
                     <b-card-text>
                       <div >
-                        <div v-for="(component, index) in message_id" v-bind:key="index">
+                        <div v-for="(component, index) in events_id" v-bind:key="index">
                           <message class="message"
                                    :message_id="component"
                           />
@@ -91,12 +91,13 @@ export default {
         current_user: 0,
         pack_loss: 0
       },
+      events_id: [],
       stats: {
         ping: 0,
         current_user: 0,
         pack_loss: 0
       },
-      message_id: [],
+      message_id: [17],
       options: {
         fill: {
           colors: '#ffc107',

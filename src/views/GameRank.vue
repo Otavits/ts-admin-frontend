@@ -2,10 +2,11 @@
   <div>
     <div id="main_content">
       <b-jumbotron>
+        <b-modal ref="success-modal" hide-footer title="Sukces" >Zmiany zapisano poprawnie!</b-modal>
         <b-overlay :show="!load_limit_rank" rounded="sm">
-          <h1 style="text-align: center"><B>Rangi gier</B></h1>
-          <h3 style="text-align: center"><B>dostepne na serwerze TeamSpeak3</B></h3>
-          <h6 style="text-align: center"><I>Możesz z poniższej listy wybrać i przydzielić sobie rangi gier.
+          <h1 style="text-align: center; color: white; font-family: 'Itim', cursive"><B>Rangi gier</B></h1>
+          <h3 style="text-align: center; color: white; font-family: 'Itim', cursive"><B>dostepne na serwerze TeamSpeak3</B></h3>
+          <h6 style="text-align: center; color: white; font-family: 'Itim', cursive"><I>Możesz z poniższej listy wybrać i przydzielić sobie rangi gier.
             Pamiętaj, że w zależności od posiadanych uprawnień na serwerze możesz mieć inny limit rang gier.
             Twój limit to: {{ limit_rank }}</I></h6>
           <div v-for="(component, index) in group_games_list" v-bind:key="index">
@@ -52,18 +53,24 @@ export default {
   },
   methods: {
     add_checked_element (id) {
-      console.log('add')
-      console.log(id)
       this.selected_rank.unshift(id)
     },
     remove_checked_element (id) {
-      console.log('remove')
-      console.log(id)
       const pos = this.selected_rank.indexOf(id)
       this.selected_rank.splice(pos, 1)
     },
     set_rank () {
-      this.$store.dispatch('set_game_rank', this.selected_rank)
+      const headers = {
+        'Content-Type': 'application/json'
+      }
+      axios
+        .put(this.$store.state.path_to_server + 'login/set_rank_games/', this.selected_rank, { headers })
+        .then(response => {
+          if (response.status === 200) {
+            this.$refs['success-modal'].show()
+            setTimeout(this.$refs['success-modal'].hide, 2500)
+          }
+        })
     }
   },
   mounted () {
@@ -95,9 +102,14 @@ export default {
   transform: translate(-50%);
 }
 .title {
+  font-family: 'Itim', cursive;
+  color: #ffc107;
   text-align: center;
-  font-size: 25px;
+  font-size: 35px;
 
+}
+.jumbotron {
+  background-color: #2e3944;
 }
 .button {
   float: right;

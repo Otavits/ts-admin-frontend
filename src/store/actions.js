@@ -31,6 +31,10 @@ export default {
     return axios.get(this.state.path_to_server + 'isonline', { headers }).then(
       ({ data }) => {
         commit('SET_LIST_ONLINE', data)
+        /* const TestData = [{ DBID: 106440, IP: '51.83.179.240', UID: 'VdJdhn5yFA6Um9hz/OzQI/fn/K8=', Nick: 'GIENIA TESTOWA' },
+          { DBID: 106445, IP: '51.83.179.240', UID: 'TrsdGyGrqislJ0DA1FSc/QGwrHg=', Nick: 'GIENIA TESTOWA2' },
+          { DBID: 106471, IP: '51.83.179.240', UID: 'Zfj51W+NHi0QRorbVge9P/ID2KQ=', Nick: 'GIENIA TESTOWA3' }]
+        commit('SET_LIST_ONLINE', TestData) */
       }
     )
   },
@@ -242,7 +246,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'public/rank_game_group_list', { headers }).then(
+    return axios.get(this.state.path_to_server + 'public/rank_game_group_list/', { headers }).then(
       ({ data }) => {
         commit('SET_GAME_GROUP_LIST', data)
       }

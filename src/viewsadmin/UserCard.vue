@@ -34,7 +34,7 @@
               </div>
               <div class="many_ban">
                 <InfoTabUserCard
-                  label="Ilość kar"
+                  label="Ilość warnów"
                   content="0"
                   icon="fas fa-skull-crossbones"
                   :status_load=true
@@ -100,7 +100,10 @@
           <input type="radio" id="tab_esw" name="mytabs" >
           <label  for="tab_esw">ESW  <i class="fas fa-comment" ></i></label>
           <div class="tab">
-            ESW
+            <ESW
+            :api_loaded="api_loaded"
+            :base_data="base_data"
+            />
           </div>
           <input type="radio" id="tab_rank" name="mytabs" >
           <label  for="tab_rank">Rangi  <i class="fas fa-comment" ></i></label>
@@ -134,6 +137,7 @@ import ConnectTabUserCard from '../components/UserCard/ConnectTabUserCard'
 import TimingTabCard from '../components/UserCard/TimingTabUserCard'
 import LastIpTabUserCard from '../components/UserCard/LastIpTabUserCard'
 import LastNickTabUserCard from '../components/UserCard/LastNickTabUserCard'
+import ESW from '../components/UserCard/ESW'
 import axios from 'axios'
 export default {
   name: 'UserCard.vue',
@@ -142,7 +146,8 @@ export default {
     ConnectTabUserCard,
     TimingTabCard,
     LastIpTabUserCard,
-    LastNickTabUserCard
+    LastNickTabUserCard,
+    ESW
   },
   data () {
     return {

@@ -1,6 +1,7 @@
 <template>
     <div>
         <div id="main_content">
+          <b-modal ref="success-modal" hide-footer title="Sukces" >Zmiany zapisano poprawnie!</b-modal>
             <b-alert v-model="alert" variant="danger" dismissible fade>
             Zaznacz właściwą rangę aby przejść dalej!
             </b-alert>
@@ -8,7 +9,7 @@
             Niestety nie spełniasz wymagań aby się zarejestrwoać!
             </b-alert>
             <b-overlay :show="loading" rounded="sm">
-            <b-jumbotron header="Rejestracja" lead="W tym miejscu możesz sam się zarejestrować lub zmienić swoje rangi rejestracyjne">
+            <b-jumbotron header="Rejestracja" :lead="status_rules.status_register ? 'W tym miejscu możesz ponownie wybrać rangi płeć oraz województwo' : 'W tym miejscu możesz sam się zarejestrować wybierając płeć lub województwo. W późniejszym czasie możesz tutaj to zmienić.'">
             <form-wizard
                       v-if="status_rules.status_register==false"
                       @on-complete="submit"
@@ -291,14 +292,28 @@ export default {
     }
   },
   methods: {
+    afterSubmit () {
+      this.$refs['success-modal'].hide()
+      this.$router.push({ path: '/dashboard' })
+      window.location.reload()
+    },
     submit: function () {
       if (this.selected_province == null) {
         this.alert = true
       } else {
         this.payload.gender_id = this.selected_gender
         this.payload.province_id = this.selected_province
-        this.$store.dispatch('send_to_register_on_ts3', this.payload)
-        window.location.reload()
+        const headers = {
+          'Content-Type': 'application/json'
+        }
+        axios
+          .put(this.$store.state.path_to_server + 'register_user_on_ts3/', this.payload, { headers })
+          .then(response => {
+            if (response.status === 200) {
+              this.$refs['success-modal'].show()
+              setTimeout(this.afterSubmit, 1000)
+            }
+          })
       }
     },
     validateAsync: function () {
@@ -398,7 +413,11 @@ export default {
     color: black;
 }
 .jumbotron {
-    background-color: #ffffff;
+    background-color: #2e3944;
+    color: white;
+}
+.vue-form-wizard .wizard-icon-circle {
+  background-color: #111117 !important;
 }
 #content {
     text-align: center;

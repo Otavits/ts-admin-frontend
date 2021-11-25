@@ -1,6 +1,7 @@
 <template>
   <div id="container">
     <div id="containers" v-for="(item, index) in rank_data" v-bind:key="index">
+      <div class="list_element">
       <div class="element">
         <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
       </div>
@@ -29,6 +30,7 @@
         </b-form-checkbox>
       </div>
       <br>
+      </div>
     </div>
   </div>
 </template>
@@ -98,7 +100,6 @@ export default {
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: 'Noto Sans', sans-serif;
   display: inline-block;
   right: 0;
   align-items: center;
@@ -107,10 +108,10 @@ export default {
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: 'Noto Sans', sans-serif;
   display: inline-block;
+  font-size: 25px;
   right: 0;
-  width: 170px;
+  width: 220px;
   align-items: center;
 }
 #containers {
@@ -119,16 +120,26 @@ export default {
   align-items: center;
 }
 .icon {
-  width: 28px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
 }
 .checkbox {
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: 'Noto Sans', sans-serif;
   display: inline-block;
   right: 0;
   align-items: center;
+}
+.list_element {
+  background-color: #242424;
+  border-radius: 25px;
+  padding: 2px 10px;
+  margin-top: 5px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: 'Itim', cursive;
 }
 </style>

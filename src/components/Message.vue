@@ -4,7 +4,7 @@
       <b-card-sub-title class="subtitle">{{message.date | date_format(message.author)}}</b-card-sub-title>
       <b-card-text class="content-text">
         {{ message.content }}
-        <b-button squared class="button" >Przeczytano</b-button>
+        <b-button squared class="button" v-if="false">Przeczytano</b-button>
       </b-card-text>
     </b-card>
   </div>
@@ -19,18 +19,19 @@ export default {
   data () {
     return {
       message: {
-        title: 'Witaj Świecie',
-        date: 1629044321,
+        title: 'Nowa wersja systemu',
+        date: 1637838439,
         author: 'ordenix',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur commodo nulla, sit amet blandit turpis convallis in. In rutrum et urna vitae sollicitudin. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam sollicitudin ante in metus commodo, eleifend lacinia metus luctus. Curabitur congue diam et risus hendrerit, ac ultricies orci molestie. Vestibulum at enim sodales, tincidunt nisl sodales, accumsan erat. Ut vel rutrum est, vitae sollicitudin mauris. Aenean quis leo vel ex pharetra aliquet. Aenean molestie in purus nec blandit. Praesent ex sapien, feugiat sed magna ut, finibus luctus erat. Aenean a mi tristique eros pulvinar pulvinar vitae vitae ligula. Proin mauris quam, sodales id dui sed, congue ornare purus.'
+        content: 'Dziś wprowadzono nową wersję systemu V-2A. Zmiany dotyczą dopracowania rejestracji użytkownika oraz wyboru rang gier. Na serwerze w ciągu najbliższych dni zostanie zablokowana możliwość nadawania rang gier za pomocą Ts3'
       }
     }
   },
   filters: {
-    date_format: function (value, arg1) {
+    date_format: function (value) {
       if (!value) return ''
-      var date = new Date(value * 1000)
-      return (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' przez ' + arg1)
+      const date = new Date(value * 1000)
+      const convert = a => (a < 10) ? '0' + a : a
+      return (convert(date.getDate()) + '-' + convert(date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + convert(date.getHours()) + ':' + convert(date.getMinutes()) + ':' + convert(date.getSeconds()))
     }
   }
 }
