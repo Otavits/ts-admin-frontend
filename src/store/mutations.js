@@ -58,5 +58,8 @@ export default {
   },
   SET_LIST_ALL_USER_IN_DB (state, data) {
     this.state.list_all_user_in_db = data
+  },
+  SET_STATUS_TOKEN_CHECKED (state) {
+    this.state.status_token_checked = true
   }
 }

@@ -75,7 +75,6 @@ export default {
     width: 250px;
     background: #2e3944;
     box-shadow: 5px 0px 8px #2e3944;
-    overflow: auto;
     z-index: 2;
     transition: 0.3s;
 }

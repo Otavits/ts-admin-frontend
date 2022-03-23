@@ -29,8 +29,28 @@ new Vue({
     const userString = localStorage.getItem('user')
     if (userString) {
       const userData = JSON.parse(userString)
-      this.$store.commit('SET_USER_DATA', userData)
-    }
+      axios.defaults.headers.common.Authorization = `Bearer ${
+        userData.token
+      }`
+      const headers = {
+        'Content-Type': 'application/json'
+      }
+      console.log('before axio')
+      axios
+        .get(this.$store.state.path_to_server + 'get_siedbar/account/', { headers })
+        .then(response => {
+          if (response.status === 200) {
+            this.$store.commit('SET_STATUS_TOKEN_CHECKED')
+            this.$store.commit('SET_USER_DATA', userData)
+          }
+        })
+        .catch(error => {
+          console.log(error.response.status)
+          if (error.response.status === 401) {
+            this.$store.dispatch('logout')
+          }
+        })
+    } else this.$store.commit('SET_STATUS_TOKEN_CHECKED')
     axios.interceptors.response.use(
       response => response,
       error => {

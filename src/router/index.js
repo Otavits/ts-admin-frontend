@@ -19,6 +19,7 @@ import UserList from '../viewsadmin/UserList'
 import UserCard from '../viewsadmin/UserCard'
 import ManageBan from '../viewsadmin/ManageBan'
 import BanHistoryTable from '../viewsadmin/BanHistoryTable'
+import PasswordRecovery from '../views/PasswordRecovery'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/login',
     name: 'loginuser',
     component: LoginUser
+  },
+  {
+    path: '/recovery',
+    name: 'PasswordRecovery',
+    component: PasswordRecovery
   },
   {
     path: '/dashboard',

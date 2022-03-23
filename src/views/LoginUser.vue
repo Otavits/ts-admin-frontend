@@ -39,6 +39,7 @@
           <div id="fotter">
                   <info-icon size="1.5x"></info-icon>
         Jeśli nie posiadasz konta do logowania  off-line możesz <router-link :to="{name: 'registeruser'}"> założyć </router-link> takie konto
+            <p> <info-icon size="1.5x"></info-icon> Jeśli nie pamiętasz hasła, możesz je <router-link :to="{name: 'PasswordRecovery'}"> zresetować </router-link></p>
     </div>
 </div>
 

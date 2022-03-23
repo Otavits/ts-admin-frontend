@@ -15,7 +15,7 @@ export default {
       'Content-Type': 'application/json'
     }
     console.log(this.$web_path)
-    return axios.post(this.state.path_to_server + 'public/login', credentials, { headers }).then(
+    return axios.post(this.state.path_to_server + 'public/account_login', credentials, { headers }).then(
       ({ data }) => {
         commit('SET_USER_DATA', data)
       }
