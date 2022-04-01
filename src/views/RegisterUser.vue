@@ -114,7 +114,7 @@ export default {
           this.show_error = true
         }
       }).then(data => {
-        if (data.Status === 'succes') {
+        if (data.detail === 'Ok') {
           this.$store.commit('set_dbid_to_login', null)
           this.$bvModal.show('confirm-register')
         }

@@ -15,7 +15,7 @@ export default {
       'Content-Type': 'application/json'
     }
     console.log(this.$web_path)
-    return axios.post(this.state.path_to_server + 'public/account_login', credentials, { headers }).then(
+    return axios.post(this.state.path_to_server + 'public/account-login', credentials, { headers }).then(
       ({ data }) => {
         commit('SET_USER_DATA', data)
       }
@@ -28,7 +28,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'isonline', { headers }).then(
+    return axios.get(this.state.path_to_server + 'public/On-Line-Client-By-Ip', { headers }).then(
       ({ data }) => {
         commit('SET_LIST_ONLINE', data)
         /* const TestData = [{ DBID: 106440, IP: '51.83.179.240', UID: 'VdJdhn5yFA6Um9hz/OzQI/fn/K8=', Nick: 'GIENIA TESTOWA' },
@@ -42,7 +42,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'set_temp_token/' + DBID.DBID, { headers }).then(
+    return axios.get(this.state.path_to_server + 'public/set-Temp-Token/' + DBID.DBID, { headers }).then(
       ({ data }) => {
       }
     )
@@ -54,7 +54,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.post(this.state.path_to_server + 'register/nonaccount/', DBID, { headers }).then(
+    return axios.post(this.state.path_to_server + 'public/non-Account', DBID, { headers }).then(
       ({ data }) => {
         commit('SET_USER_DATA', data)
       }
@@ -68,7 +68,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'get_siedbar/account/', { headers }).then(
+    return axios.get(this.state.path_to_server + 'sidebar/account', { headers }).then(
       ({ data }) => {
         commit('SET_ACCOUNT_MENU', data)
       }
@@ -82,7 +82,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'get_siedbar/server/', { headers }).then(
+    return axios.get(this.state.path_to_server + 'sidebar/server', { headers }).then(
       ({ data }) => {
         commit('SET_SERVER_MENU', data)
       }
@@ -92,17 +92,27 @@ export default {
     }
     )
   },
-  rank ({ commit }, REQUEST) {
+  rank_gender ({ commit }) {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'rank/?type=' + REQUEST.type + '&action=' + REQUEST.action + '&id=' + REQUEST.id + '&rank_name=' + REQUEST.rank_name + '&group_id=' + REQUEST.group_id + '&path=' + REQUEST.path, { headers }).then(
+    return axios.get(this.state.path_to_server + 'rank-register/rank-gender', { headers }).then(
       ({ data }) => {
-        if (REQUEST.type === 'rank_gender' && REQUEST.action === 'get') {
-          commit('SET_RANK_GENDER', data)
-        } else if (REQUEST.type === 'rank_province' && REQUEST.action === 'get') {
-          commit('SET_RANK_PROVINCE', data)
-        }
+        commit('SET_RANK_GENDER', data)
+      }
+    ).catch(error => {
+      console.log(error.response.data.message || error.message)
+      console.log(error.response.data.detail || error.message)
+    }
+    )
+  },
+  rank_province ({ commit }) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.get(this.state.path_to_server + 'rank-register/rank-province', { headers }).then(
+      ({ data }) => {
+        commit('SET_RANK_PROVINCE', data)
       }
     ).catch(error => {
       console.log(error.response.data.message || error.message)
@@ -162,7 +172,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.post(this.state.path_to_server + 'get_DBID_by_uid/', DATA, { headers }).then(
+    return axios.post(this.state.path_to_server + 'public/get-dbid-by-uid', DATA, { headers }).then(
       ({ data }) => {
         commit('set_dbid_to_login', data.DBID)
       }
@@ -236,7 +246,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'public/get_ip', { headers }).then(
+    return axios.get(this.state.path_to_server + 'others/get-ip', { headers }).then(
       ({ data }) => {
         commit('SET_IP', data.client_host)
       }

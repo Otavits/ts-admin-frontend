@@ -64,7 +64,7 @@ export default {
         'Content-Type': 'application/json'
       }
       axios
-        .put(this.$store.state.path_to_server + 'login/set_rank_games/', this.selected_rank, { headers })
+        .put(this.$store.state.path_to_server + 'game-rank/set-rank-game', this.selected_rank, { headers })
         .then(response => {
           if (response.status === 200) {
             this.$refs['success-modal'].show()
@@ -79,7 +79,7 @@ export default {
       'Content-Type': 'application/json'
     }
     axios
-      .get(this.$store.state.path_to_server + 'login/get_current_rank_limit/', { headers })
+      .get(this.$store.state.path_to_server + 'game-rank/current-rank-limit', { headers })
       .then(response => {
         this.limit_rank = response.data
         this.load_limit_rank = true

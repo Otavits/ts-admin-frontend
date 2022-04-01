@@ -37,7 +37,7 @@ new Vue({
       }
       console.log('before axio')
       axios
-        .get(this.$store.state.path_to_server + 'get_siedbar/account/', { headers })
+        .get(this.$store.state.path_to_server + 'sidebar/account', { headers })
         .then(response => {
           if (response.status === 200) {
             this.$store.commit('SET_STATUS_TOKEN_CHECKED')

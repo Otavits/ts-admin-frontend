@@ -41,42 +41,20 @@ export default {
   },
   data () {
     return {
-      fields: [{ key: 'id', label: 'Lp ' }, { key: 'rank_name', label: 'Nazwa rangi' }, { key: 'group_id', label: 'Id grupy' }, { key: 'path', label: 'Ścieżka do ikony' }],
-      request: {
-        action: null,
-        id: null,
-        type: null,
-        rank_name: null,
-        group_id: 0,
-        path: null
-      },
-      request2: {
-        action: null,
-        id: null,
-        type: null,
-        rank_name: null,
-        group_id: 0,
-        path: null
-      }
+      fields: [{ key: 'id', label: 'Lp ' }, { key: 'rankName', label: 'Nazwa rangi' }, { key: 'groupId', label: 'Id grupy' }, { key: 'path', label: 'Ścieżka do ikony' }]
     }
   },
   methods: {
     rowclick_gender (item, index, event) {
-      this.$router.push({ name: 'rankform', params: { type: 'rank_gender', action: 'modify', id: index + 1, name_rank: this.rank_gender[index].rank_name, group_id: this.rank_gender[index].group_id, path: this.rank_gender[index].path, misc: 'null', sort_id: 'null' } })
+      this.$router.push({ name: 'rankform', params: { type: 'rank_gender', action: 'modify', id: index + 1, name_rank: this.rank_gender[index].rankName, group_id: this.rank_gender[index].groupId, path: this.rank_gender[index].path, misc: 'null', sort_id: 'null' } })
     },
     rowclick_province (item, index, event) {
-      this.$router.push({ name: 'rankform', params: { type: 'rank_province', action: 'modify', id: index + 1, name_rank: this.rank_province[index].rank_name, group_id: this.rank_province[index].group_id, path: this.rank_province[index].path, misc: 'null', sort_id: 'null' } })
+      this.$router.push({ name: 'rankform', params: { type: 'rank_province', action: 'modify', id: index + 1, name_rank: this.rank_province[index].rankName, group_id: this.rank_province[index].groupId, path: this.rank_province[index].path, misc: 'null', sort_id: 'null' } })
     }
   },
   mounted () {
-    this.request.action = 'get'
-    this.request.type = 'rank_province'
-    this.request.id = 0
-    this.$store.dispatch('rank', this.request)
-    this.request2.action = 'get'
-    this.request2.type = 'rank_gender'
-    this.request2.id = 0
-    this.$store.dispatch('rank', this.request2)
+    this.$store.dispatch('rank_province')
+    this.$store.dispatch('rank_gender')
   },
   computed: {
     ...mapState([

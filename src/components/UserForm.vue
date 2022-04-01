@@ -2,8 +2,8 @@
     <div>
         <b-card class="Userform" @click="onCheck">
             <b-card-text>
-                <h3> Nick: {{data.Nick}} </h3>
-                Twój UID: {{data.UID}}
+                <h3> Nick: {{data.nick}} </h3>
+                Twój UID: {{data.uid}}
             </b-card-text>
         </b-card>
 
@@ -18,12 +18,12 @@ export default {
   methods: {
     onCheck (event) {
       event.preventDefault()
-      console.log(this.data.DBID)
+      console.log(this.data.dbid)
       this.$store.dispatch('create_temp_token', {
-        DBID: this.data.DBID
+        DBID: this.data.dbid
       })
       this.$store.dispatch('select_dbid_to_login', {
-        DBID: this.data.DBID
+        DBID: this.data.dbid
       })
       // router.push('/')
     }

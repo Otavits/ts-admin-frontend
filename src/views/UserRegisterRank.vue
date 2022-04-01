@@ -188,10 +188,10 @@
                       </div>
                       <div class="element">
                         <b-form-checkbox
-                          :id=item.rank_name
+                          :id=item.rankName
                           v-model="selected_gender"
-                          :name=item.rank_name
-                          :value=item.group_id
+                          :name=item.rankName
+                          :value=item.groupId
                           :unchecked-value=null
                         >
                         </b-form-checkbox>
@@ -212,10 +212,10 @@
                       </div>
                       <div class="element">
                         <b-form-checkbox
-                          :id=item.rank_name
+                          :id=item.rankName
                           v-model="selected_province"
-                          :name=item.rank_name
-                          :value=item.group_id
+                          :name=item.rankName
+                          :value=item.groupId
                           :unchecked-value=null
                         >
                         </b-form-checkbox>
@@ -258,22 +258,6 @@ export default {
   data () {
     return {
       index_step: 0,
-      request: {
-        action: null,
-        id: null,
-        type: null,
-        rank_name: null,
-        group_id: 0,
-        path: null
-      },
-      request2: {
-        action: null,
-        id: null,
-        type: null,
-        rank_name: null,
-        group_id: 0,
-        path: null
-      },
       selected_gender: null,
       selected_province: null,
       alert: false,
@@ -320,7 +304,7 @@ export default {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           axios
-            .get(this.$store.state.path_to_server + 'status_rule_user/')
+            .get(this.$store.state.path_to_server + 'rank-register/user-status-rule')
             .then(response => { this.status_rules = response.data })
           if (this.status_rules.connect === false || this.status_rules.time === false || this.status_rules.ban === false || this.status_rules.rules === false) {
             this.alert2 = true
@@ -345,16 +329,10 @@ export default {
     }
   },
   mounted () {
-    this.request.action = 'get'
-    this.request.type = 'rank_province'
-    this.request.id = 0
-    this.$store.dispatch('rank', this.request)
-    this.request2.action = 'get'
-    this.request2.type = 'rank_gender'
-    this.request2.id = 0
-    this.$store.dispatch('rank', this.request2)
+    this.$store.dispatch('rank_province')
+    this.$store.dispatch('rank_gender')
     axios
-      .get(this.$store.state.path_to_server + 'status_rule_user/')
+      .get(this.$store.state.path_to_server + 'rank-register/user-status-rule')
       .then(response => {
         this.status_rules = response.data
       })

@@ -109,7 +109,8 @@ export default {
     return {
       enter_token: false,
       form: {
-        login: ''
+        login: '',
+        password: 'null'
       },
       invalid_nick: false,
       password: '',
@@ -134,10 +135,12 @@ export default {
       const data = {
         password: this.password,
         token: this.token,
-        login: this.form.login
+        login: this.form.login,
+        uid: 'null',
+        dbid: 'null'
       }
       axios
-        .post(this.$store.state.path_to_server + 'login/recovery/send_password/', data, { headers })
+        .post(this.$store.state.path_to_server + 'public/recovery-password/set-new-password', data, { headers })
         .then(response => {
           if (response.status === 200) {
             this.$refs['success-modal'].show()
@@ -145,7 +148,7 @@ export default {
           }
         })
         .catch(error => {
-          if (error.response.status === 403) {
+          if (error.response.status === 400) {
             this.$refs['error-modal'].show()
             setTimeout(this.afterFatalError, 2500)
           }
@@ -155,12 +158,12 @@ export default {
       const headers = {
         'Content-Type': 'application/json'
       }
-      axios.post(this.$store.state.path_to_server + 'login/recovery/send_token/', this.form, { headers })
+      axios.post(this.$store.state.path_to_server + 'public/recovery-password/send-token', this.form, { headers })
         .then(response => {
           if (response.status === 200) this.enter_token = true
         })
         .catch(error => {
-          if (error.response.status === 406) {
+          if (error.response.status === 400) {
             this.invalid_nick = true
           }
         })

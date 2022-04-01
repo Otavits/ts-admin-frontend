@@ -72,7 +72,7 @@ export default {
     login (event) {
       event.preventDefault()
       this.$store.dispatch('create_auth_nonaccount_token', {
-        DBID: this.selected_login_db,
+        dbid: this.selected_login_db,
         token: this.token
       }).then(() => {
         this.$router.push({ name: 'dashboard' })

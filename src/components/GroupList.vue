@@ -63,7 +63,7 @@ export default {
         this.rank_data = response.data
       })
     axios
-      .get(this.$store.state.path_to_server + 'login/current_to_set_array/' + this.rank_group, { headers })
+      .get(this.$store.state.path_to_server + 'game-rank/current-rank-array-to-initialize/' + this.rank_group, { headers })
       .then(response => {
         this.selected_group = response.data
       })
