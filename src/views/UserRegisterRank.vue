@@ -291,7 +291,7 @@ export default {
           'Content-Type': 'application/json'
         }
         axios
-          .put(this.$store.state.path_to_server + 'register_user_on_ts3/', this.payload, { headers })
+          .put(this.$store.state.path_to_server + 'rank-register/register-user-on-ts3', this.payload, { headers })
           .then(response => {
             if (response.status === 200) {
               this.$refs['success-modal'].show()
