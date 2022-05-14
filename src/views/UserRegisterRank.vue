@@ -106,13 +106,13 @@
                             <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
                         </div>
                         <div class="element">
-                            {{ item.rank_name }}
+                            {{ item.rankName }}
                         </div>
                         <div class="element">
                             <b-form-checkbox
-                                :id=item.rank_name
+                                :id=item.rankName
                                 v-model="selected_gender"
-                                :name=item.rank_name
+                                :name=item.rankName
                                 :value=item.group_id
                                 :unchecked-value=null
                                 >
@@ -130,14 +130,14 @@
                             <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
                         </div>
                         <div class="element2">
-                            {{ item.rank_name }}
+                            {{ item.rankName }}
                         </div>
                         <div class="element">
                             <b-form-checkbox
-                                :id=item.rank_name
+                                :id=item.rankName
                                 v-model="selected_province"
-                                :name=item.rank_name
-                                :value=item.group_id
+                                :name=item.rankName
+                                :value=item.groupId
                                 :unchecked-value=null
                                 >
                             </b-form-checkbox>
@@ -184,7 +184,7 @@
                         <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
                       </div>
                       <div class="element">
-                        {{ item.rank_name }}
+                        {{ item.rankName }}
                       </div>
                       <div class="element">
                         <b-form-checkbox
@@ -208,7 +208,7 @@
                         <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
                       </div>
                       <div class="element2">
-                        {{ item.rank_name }}
+                        {{ item.rankName }}
                       </div>
                       <div class="element">
                         <b-form-checkbox

@@ -11,7 +11,7 @@
                     >
                         <b-form-input
                         id="input-1"
-                        v-model="form.rank_name"
+                        v-model="form.rankName"
                         placeholder="Wprowadź nazwę rangi"
                         required
                         ></b-form-input>
@@ -22,7 +22,7 @@
                     >
                         <b-form-input
                         id="input-2"
-                        v-model="form.rank_id"
+                        v-model="form.rankId"
                         placeholder="Wprowadź Id grupy"
                         type="number"
                         disabled
@@ -33,7 +33,7 @@
                     <b-form-group id="input-group-3" label="Id grupy administracyjnej na Teamspeak'u" label-for="input-3">
                         <b-form-input
                         id="input-3"
-                        v-model="form.group_id"
+                        v-model="form.groupId"
                         placeholder="Podaj id grupy"
                         required
                         ></b-form-input>
@@ -43,7 +43,7 @@
                     <div id="grants">
                     <b-form-checkbox
                         id="checkbox-1"
-                        v-model="form.acces_to_register"
+                        v-model="form.accesToRegister"
                         name="checkbox-1"
                         value="true"
                         unchecked-value="false"
@@ -52,7 +52,7 @@
                     </b-form-checkbox>
                     <b-form-checkbox
                         id="checkbox-2"
-                        v-model="form.acces_to_grant_rank"
+                        v-model="form.accesToGrantRank"
                         name="checkbox-2"
                         value="true"
                         unchecked-value="false"
@@ -61,18 +61,49 @@
                     </b-form-checkbox>
                     <b-form-checkbox
                         id="checkbox-3"
-                        v-model="form.acces_to_staff_user"
+                        v-model="form.accesToStaffUser"
                         name="checkbox-3"
                         value="true"
                         unchecked-value="false"
                         >
                         Zarządzanie administartorami systemu
                     </b-form-checkbox>
+                      <b-form-checkbox
+                        id="checkbox-4"
+                        v-model="form.accessToGameRank"
+                        name="checkbox-4"
+                        value="true"
+                        unchecked-value="false"
+                      >
+                        Zarządzanie rangami gier
+                      </b-form-checkbox>
+                      <b-form-checkbox
+                        id="checkbox-5"
+                        v-model="form.accessToUser"
+                        name="checkbox-5"
+                        value="true"
+                        unchecked-value="false"
+                      >
+                        Zarządzanie użytkownikiem
+                      </b-form-checkbox>
+                      <b-form-checkbox
+                        id="checkbox-6"
+                        v-model="form.accessToBan"
+                        name="checkbox-6"
+                        value="true"
+                        unchecked-value="false"
+                      >
+                        Zarządzanie sekcją banów
+                      </b-form-checkbox>
                     </div>
                     <br>
                     <br>
                     <br>
                     <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
                     <div id="button-group">
                     <b-button class="button" type="submit" variant="primary">Zapisz</b-button>
                     <b-button v-if="$route.params.action==='modify'" class="button_get" @click="$bvModal.show('confirm-delete')" variant="danger">Usuń rangę</b-button>
@@ -99,12 +130,15 @@ export default {
     return {
       form: {
         id: 0,
-        rank_name: '',
-        rank_id: 0,
-        group_id: '',
-        acces_to_register: false,
-        acces_to_grant_rank: false,
-        acces_to_staff_user: false
+        rankName: '',
+        rankId: 0,
+        groupId: '',
+        accesToRegister: false,
+        accesToGrantRank: false,
+        accesToStaffUser: false,
+        accessToGameRank: false,
+        accessToUser: false,
+        accessToBan: false
       }
     }
   },

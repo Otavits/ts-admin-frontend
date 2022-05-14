@@ -4,7 +4,7 @@
       <b-jumbotron>
         <h1 style="text-align: center"><B>Lista rang gier</B></h1>
           <div v-for="(component, index) in group_games_list" v-bind:key="index">
-            <div class="title" @click="group_click(component)"><B>{{ component.group_name }}</B></div>
+            <div class="title" @click="group_click(component)"><B>{{ component.groupName }}</B></div>
             <TableGameRank :data="component" />
             <br>
           </div>

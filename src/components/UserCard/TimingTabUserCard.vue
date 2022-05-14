@@ -26,9 +26,9 @@ export default {
       'Content-Type': 'application/json'
     }
     axios
-      .get(this.$store.state.path_to_server + 'staff/get_user_info_timing/' + this.$route.params.dbid, { headers })
+      .get(this.$store.state.path_to_server + 'user/get-user-dashboard-timing-data/' + this.$route.params.dbid, { headers })
       .then(response => {
-        this.series = [response.data.TIME_ONLINE, response.data.TIME_IDLE, response.data.TIME_AWAY, response.data.TIME_MIC_DISABLED]
+        this.series = [response.data.timeOnline, response.data.timeIdle, response.data.timeAway, response.data.timeMicDisabled]
         this.api_loaded = true
       })
   },

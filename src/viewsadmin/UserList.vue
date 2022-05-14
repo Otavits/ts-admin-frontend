@@ -111,11 +111,11 @@
                    @row-clicked="row_click"
           >
             <template #cell(Last_login)="data">
-              {{ data.item.Last_login | date_format}}
+              {{ data.item.last_login | date_format}}
             </template>
             <template #cell(IsOnline)="data">
-              <i v-if="!data.item.IsOnline" class="fas fa-user-alt-slash" v-bind:style="{ color: 'red'}"></i>
-              <i v-if="data.item.IsOnline" class="fas fa-user-alt" v-bind:style="{ color: 'green'}"></i>
+              <i v-if="!data.item.isOnline" class="fas fa-user-alt-slash" v-bind:style="{ color: 'red'}"></i>
+              <i v-if="data.item.isOnline" class="fas fa-user-alt" v-bind:style="{ color: 'green'}"></i>
             </template>
           </b-table>
         </b-overlay>
@@ -143,22 +143,22 @@ export default {
       loadAPI: false,
       fields: [
         {
-          key: 'Nick',
+          key: 'nick',
           label: 'Nick',
           sortable: true
         },
         {
-          key: 'UID',
+          key: 'uid',
           label: 'UID',
           sortable: true
         },
         {
-          key: 'DBID',
+          key: 'dbid',
           label: 'DBID',
           sortable: true
         },
         {
-          key: 'Last_ip',
+          key: 'last_ip',
           label: 'Ostatni adres IP',
           sortable: true
         },
@@ -210,16 +210,16 @@ export default {
       if (this.list_all_user_in_db.length === 0) {
         return []
       } else {
-        let tempData = this.list_all_user_in_db.users
-        tempData = tempData.filter(name => name.Nick.toLowerCase().includes(this.settings_to_user_list.nick.toLowerCase()))
-        tempData = tempData.filter(name => name.UID.toLowerCase().includes(this.settings_to_user_list.uid.toLowerCase()))
-        tempData = tempData.filter(name => name.Last_ip.toLowerCase().includes(this.settings_to_user_list.ip.toLowerCase()))
+        let tempData = this.list_all_user_in_db
+        tempData = tempData.filter(name => name.nick.toLowerCase().includes(this.settings_to_user_list.nick.toLowerCase()))
+        tempData = tempData.filter(name => name.uid.toLowerCase().includes(this.settings_to_user_list.uid.toLowerCase()))
+        tempData = tempData.filter(name => name.last_ip.toLowerCase().includes(this.settings_to_user_list.ip.toLowerCase()))
         if (this.settings_to_user_list.dbid !== '') {
-          tempData = tempData.filter(name => name.DBID === parseInt(this.settings_to_user_list.dbid))
+          tempData = tempData.filter(name => name.dbid === parseInt(this.settings_to_user_list.dbid))
         }
         if (this.settings_to_user_list.selected_online === true) {
           tempData = tempData.filter((item) => {
-            return (item.IsOnline === true)
+            return (item.isOnline === true)
           })
           return tempData
         } else {
@@ -241,7 +241,7 @@ export default {
       this.settings_to_user_list.dbid = ''
     },
     row_click (item, index, event) {
-      this.$router.push({ name: 'UserCard', params: { dbid: item.DBID } })
+      this.$router.push({ name: 'UserCard', params: { dbid: item.dbid } })
     },
     change_state_selected_online () {
       console.log('nulfl')
@@ -258,7 +258,7 @@ export default {
       const headers = {
         'Content-Type': 'application/json'
       }
-      axios.get(this.$store.state.path_to_server + 'staff/get_all_user_list/', { headers }).then(
+      axios.get(this.$store.state.path_to_server + 'user/all-user-list/', { headers }).then(
         ({ data }) => {
           this.$store.commit('SET_LIST_ALL_USER_IN_DB', data)
           this.refresh_queued = false

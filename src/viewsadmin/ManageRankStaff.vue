@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      fields: [{ key: 'id', label: 'Lp ' }, { key: 'rank_name', label: 'Nazwa rangi' }, { key: 'rank_id', label: 'Id rangi' }]
+      fields: [{ key: 'id', label: 'Lp ' }, { key: 'rankName', label: 'Nazwa rangi' }, { key: 'rankId', label: 'Id rangi' }]
     }
   },
   methods: {

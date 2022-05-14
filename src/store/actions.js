@@ -120,22 +120,44 @@ export default {
     }
     )
   },
-  put_rank_register ({ commit }, DATA) {
+  put_rank_register_gender ({ commit }, DATA) {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.put(this.state.path_to_server + 'staff/rank/rank_register', DATA, { headers }).catch(
+    return axios.put(this.state.path_to_server + 'rank-register/modify-rank-register-gender', DATA, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
       }
     )
   },
-  delete_rank_register ({ commit }, DATA) {
+  put_rank_register_province ({ commit }, DATA) {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.delete(this.state.path_to_server + 'staff/rank/rank_register', { data: DATA }, { headers }).catch(
+    return axios.put(this.state.path_to_server + 'rank-register/modify-rank-register-province', DATA, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      }
+    )
+  },
+  delete_rank_register_gender ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.delete(this.state.path_to_server + 'rank-register/delete-rank-register-gender', { data: DATA }, { headers }).catch(
+      error => {
+        console.log(error.response.data.message || error.message)
+        console.log(error.response.data.detail || error.message)
+      }
+    )
+  },
+  delete_rank_register_province ({ commit }, DATA) {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    return axios.delete(this.state.path_to_server + 'rank-register/delete-rank-register-province', { data: DATA }, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -146,7 +168,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'staff/staff_rank/', { headers }).then(
+    return axios.get(this.state.path_to_server + 'staff/get-staff-rank-list', { headers }).then(
       ({ data }) => {
         commit('SET_STAF_RANK', data)
       }
@@ -161,7 +183,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.put(this.state.path_to_server + 'staff/staff_rank/', DATA, { headers }).catch(
+    return axios.put(this.state.path_to_server + 'staff/modify-staff-rank', DATA, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -256,7 +278,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'public/rank_game_group_list/', { headers }).then(
+    return axios.get(this.state.path_to_server + 'game-rank/game-rank-group-list/', { headers }).then(
       ({ data }) => {
         commit('SET_GAME_GROUP_LIST', data)
       }
@@ -266,7 +288,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.put(this.state.path_to_server + 'staff/rank_game/', DATA, { headers }).catch(
+    return axios.put(this.state.path_to_server + 'game-rank/modify-rank-game', DATA, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -277,7 +299,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.delete(this.state.path_to_server + 'staff/rank_game/', { data: DATA }, { headers }).catch(
+    return axios.delete(this.state.path_to_server + 'game-rank/delete-rank-game', { data: DATA }, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -288,7 +310,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.put(this.state.path_to_server + 'staff/rank_game_group_list/', DATA, { headers }).catch(
+    return axios.put(this.state.path_to_server + 'game-rank/modify-rank-table-list', DATA, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -299,7 +321,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.delete(this.state.path_to_server + 'staff/rank_game_group_list/', { data: DATA }, { headers }).catch(
+    return axios.delete(this.state.path_to_server + 'game-rank/delete-rank-table-list', { data: DATA }, { headers }).catch(
       error => {
         console.log(error.response.data.message || error.message)
         console.log(error.response.data.detail || error.message)
@@ -339,7 +361,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return axios.get(this.state.path_to_server + 'staff/get_all_user_list/', { headers }).then(
+    return axios.get(this.state.path_to_server + 'user/all-user-list/', { headers }).then(
       ({ data }) => {
         commit('SET_LIST_ALL_USER_IN_DB', data)
       }

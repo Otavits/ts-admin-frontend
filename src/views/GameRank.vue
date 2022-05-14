@@ -10,10 +10,10 @@
             Pamiętaj, że w zależności od posiadanych uprawnień na serwerze możesz mieć inny limit rang gier.
             Twój limit to: {{ limit_rank }}</I></h6>
           <div v-for="(component, index) in group_games_list" v-bind:key="index">
-            <div class="title"><B>{{ component.group_name }}</B></div>
+            <div class="title"><B>{{ component.groupName }}</B></div>
             <GroupList
               @selected_element="add_checked_element" @remove_element="remove_checked_element"
-              :rank_group="component.group_name" :reach_limit="limit_reach"
+              :rank_group="component.groupName" :reach_limit="limit_reach"
             />
             <br>
           </div>

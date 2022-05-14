@@ -6,25 +6,25 @@
         <img class="icon" :src="$store.state.path_to_server + 'public/icon/'+item.path">
       </div>
       <div class="element2">
-        {{ item.rank_name }}
+        {{ item.rankName }}
       </div>
       <div class="element">
           <b-form-checkbox
-          v-if="selected_group.indexOf(item.group_id) === -1"
-          :id=item.rank_name
+          v-if="selected_group.indexOf(item.groupId) === -1"
+          :id=item.rankName
           v-model="selected_group"
-          :name=item.rank_name
-          :value=item.group_id
+          :name=item.rankName
+          :value=item.groupId
           :unchecked-value=null
           :disabled="reach_limit"
         >
         </b-form-checkbox>
         <b-form-checkbox
-          v-if="selected_group.indexOf(item.group_id) !== -1"
-          :id=item.rank_name
+          v-if="selected_group.indexOf(item.groupId) !== -1"
+          :id=item.rankName
           v-model="selected_group"
-          :name=item.rank_name
-          :value=item.group_id
+          :name=item.rankName
+          :value=item.groupId
           :unchecked-value=null
         >
         </b-form-checkbox>
@@ -58,7 +58,7 @@ export default {
     const dd = this.rank_current_list
     console.log(dd)
     axios
-      .get(this.$store.state.path_to_server + 'public/rank_games_list/' + this.rank_group, { headers })
+      .get(this.$store.state.path_to_server + 'game-rank/rank-games-list/' + this.rank_group, { headers })
       .then(response => {
         this.rank_data = response.data
       })

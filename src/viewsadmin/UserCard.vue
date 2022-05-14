@@ -10,7 +10,7 @@
               <div class="nick">
                 <InfoTabUserCard
                 label="Nick"
-                :content="base_data.Nick"
+                :content="base_data.nick"
                 icon="far fa-user"
                 :status_load="api_loaded.api_base"
                 />
@@ -18,7 +18,7 @@
               <div class="dbid">
                 <InfoTabUserCard
                   label="DBID"
-                  :content="base_data.DBID"
+                  :content="base_data.dbid"
                   icon="fas fa-key"
                   :status_load="api_loaded.api_base"
                 />
@@ -26,7 +26,7 @@
               <div class="uid">
                 <InfoTabUserCard
                   label="UID"
-                  :content="base_data.UID"
+                  :content="base_data.uid"
                   icon="fas fa-fingerprint"
                   :status_load="api_loaded.api_base"
                   :small_content=true
@@ -62,7 +62,7 @@
               <div class="client_version">
                 <InfoTabUserCard
                   label="Wersja klienta"
-                  :content="base_data_misc.platform + ' ' + base_data_misc.client_version"
+                  :content="base_data_misc.platform + ' ' + base_data_misc.clientVersion"
                   icon="fas fa-laptop"
                   :status_load="api_loaded.api_misc"
                   :small_content=true
@@ -188,13 +188,13 @@ export default {
       'Content-Type': 'application/json'
     }
     axios
-      .get(this.$store.state.path_to_server + 'staff/get_user_info_dash_board_base_/' + this.$route.params.dbid, { headers })
+      .get(this.$store.state.path_to_server + 'user/get-user-dashboard-base-data/' + this.$route.params.dbid, { headers })
       .then(response => {
         this.base_data = response.data
         this.api_loaded.api_base = true
       })
     axios
-      .get(this.$store.state.path_to_server + 'staff/get_user_info_dash_board_base_info/' + this.$route.params.dbid, { headers })
+      .get(this.$store.state.path_to_server + 'user/get-user-dashboard-info-data/' + this.$route.params.dbid, { headers })
       .then(response => {
         this.base_data_info = response.data
         this.api_loaded.api_info = true
@@ -203,7 +203,7 @@ export default {
         }
       })
     axios
-      .get(this.$store.state.path_to_server + 'staff/get_user_info_dash_board_base_misc/' + this.$route.params.dbid, { headers })
+      .get(this.$store.state.path_to_server + 'user/get-user-dashboard-misc-data/' + this.$route.params.dbid, { headers })
       .then(response => {
         this.base_data_misc = response.data
         this.api_loaded.api_misc = true

@@ -11,7 +11,7 @@
         <b-form-group id="input-group-1" label="Nazwa grupy:" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="form.group_name"
+            v-model="form.groupName"
             placeholder="Wprowadź nazwę grupy"
             required
           ></b-form-input>
@@ -19,7 +19,7 @@
         <b-form-group id="input-group-2" label="Sort id:" label-for="input-2">
           <b-form-input
             id="input-2"
-            v-model="form.sort_id"
+            v-model="form.sortId"
             placeholder="Wprowadź sort id"
             required
           ></b-form-input>
@@ -49,8 +49,8 @@ export default {
     return {
       state: true,
       form: {
-        sort_id: null,
-        group_name: null,
+        sortId: null,
+        groupName: null,
         id: null
       },
       add_new: false
@@ -63,14 +63,14 @@ export default {
   },
   mounted () {
     if (this.data == null) {
-      this.form.sort_id = null
-      this.form.group_name = null
+      this.form.sortId = null
+      this.form.groupName = null
       this.form.id = 0
       this.add_new = true
     } else {
       this.add_new = false
-      this.form.sort_id = this.data.sort_id
-      this.form.group_name = this.data.group_name
+      this.form.sortId = this.data.sortId
+      this.form.groupName = this.data.groupName
       this.form.id = this.data.id
     }
   },

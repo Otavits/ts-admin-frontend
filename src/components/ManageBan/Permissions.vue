@@ -125,7 +125,7 @@ export default {
       const headers = {
         'Content-Type': 'application/json'
       }
-      axios.get(this.$store.state.path_to_server + 'staff/staff_rank/', { headers })
+      axios.get(this.$store.state.path_to_server + 'staff/get-staff-rank-list', { headers })
         .then(response => {
           this.table_data = response.data
           this.api_loaded = true

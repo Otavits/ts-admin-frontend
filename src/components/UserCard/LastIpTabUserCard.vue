@@ -36,7 +36,7 @@ export default {
       table_data: [],
       fields: [
         {
-          key: 'ip',
+          key: 'ip.ip',
           label: 'Ip',
           sortable: true
         },
@@ -58,7 +58,7 @@ export default {
       'Content-Type': 'application/json'
     }
     axios
-      .get(this.$store.state.path_to_server + 'staff/get_user_history_last_5_ip/' + this.$route.params.dbid, { headers })
+      .get(this.$store.state.path_to_server + 'user/get-user-dashboard-last-ip/' + this.$route.params.dbid, { headers })
       .then(response => {
         this.table_data = response.data
         this.api_loaded = true
